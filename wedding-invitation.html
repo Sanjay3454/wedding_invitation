@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Name 1] & [Name 2] - Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #FAF7F2; /* Warm ivory / Champagne */
+      --text-dark: #1E3A2A; /* Deep forest green */
+      --accent-rose: #C99A9A; /* Dusty rose */
+      --bg-light: #FFFFFF;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Montserrat', sans-serif;
+      --spacing-section: 8rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Subtle grain/noise texture overlay */
+    .noise {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    h1, h2, h3, .serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    section {
+      padding: var(--spacing-section) 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floral Divider SVG */
+    .divider {
+      display: flex;
+      justify-content: center;
+      margin: 4rem 0;
+    }
+    .divider svg {
+      width: 140px;
+      height: auto;
+      fill: var(--accent-rose);
+      opacity: 0.8;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 2rem;
+    }
+    .hero-frame {
+      position: absolute;
+      top: 2rem; left: 2rem; right: 2rem; bottom: 2rem;
+      border: 1px solid rgba(201, 154, 154, 0.4);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .monogram {
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    .monogram-amp {
+      color: var(--accent-rose);
+      font-style: italic;
+      font-size: 10rem;
+      font-family: var(--font-serif);
+      line-height: 1;
+      animation: breathingGlow 4s infinite alternate ease-in-out;
+      display: inline-block;
+    }
+    @keyframes breathingGlow {
+      0% { text-shadow: 0 0 10px rgba(201, 154, 154, 0.1); transform: scale(1); }
+      100% { text-shadow: 0 0 40px rgba(201, 154, 154, 0.8); transform: scale(1.05); }
+    }
+    .hero-names {
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-date {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-weight: 300;
+      margin-top: 1rem;
+      color: var(--text-dark);
+    }
+
+    /* Our Story */
+    .story-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .story-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+      }
+      .story-text {
+        padding-left: 3rem;
+        border-left: 1px solid rgba(201, 154, 154, 0.5);
+      }
+    }
+    .story-title {
+      font-size: 3.5rem;
+      color: var(--accent-rose);
+      font-style: italic;
+    }
+    .story-text p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #2c4a38;
+    }
+
+    /* Event Details */
+    .events-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .events-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .event-card {
+      background: var(--bg-light);
+      padding: 4rem 2.5rem;
+      text-align: center;
+      border-radius: 2px;
+      box-shadow: 0 20px 40px rgba(30, 58, 42, 0.04);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .event-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(30, 58, 42, 0.08);
+    }
+    .event-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: var(--accent-rose);
+      opacity: 0.8;
+    }
+    .event-card::after {
+      content: "";
+      position: absolute;
+      bottom: 1rem; right: 1rem;
+      width: 40px; height: 40px;
+      border-right: 1px solid var(--accent-rose);
+      border-bottom: 1px solid var(--accent-rose);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .event-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+    .event-time {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: var(--accent-rose);
+    }
+    .event-location {
+      margin-bottom: 2rem;
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .event-dress {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666;
+      font-weight: 500;
+      border-top: 1px solid #eee;
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Gallery Placeholder */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .gallery-item {
+      background: #EAE3D6; /* Soft placeholder */
+      aspect-ratio: 3/4;
+      border-radius: 2px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      top: 1.5rem; left: 1.5rem; right: 1.5rem; bottom: 1.5rem;
+      border: 1px solid rgba(201, 154, 154, 0.4);
+      pointer-events: none;
+    }
+    .gallery-item:nth-child(2) {
+      transform: translateY(2rem);
+    }
+
+    /* RSVP Form */
+    .rsvp-section {
+      background: var(--text-dark);
+      color: var(--bg-color);
+      padding: 8rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    .rsvp-section::before {
+      content: "";
+      position: absolute;
+      top: 1rem; left: 1rem; right: 1rem; bottom: 1rem;
+      border: 1px solid rgba(250, 247, 242, 0.1);
+      pointer-events: none;
+    }
+    .rsvp-container {
+      max-width: 650px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .rsvp-title {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: var(--bg-color);
+      font-style: italic;
+    }
+    .rsvp-deadline {
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 4rem;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .custom-form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      text-align: left;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .form-label {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--accent-rose);
+      font-style: italic;
+    }
+    .form-input, .form-textarea, .form-select {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(250, 247, 242, 0.2);
+      color: var(--bg-color);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      padding: 0.8rem 0;
+      transition: border-color 0.4s ease, background-color 0.4s ease;
+      min-height: 44px; /* Touch target */
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-bottom-color: var(--accent-rose);
+      background-color: rgba(250, 247, 242, 0.02);
+    }
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(250, 247, 242, 0.3);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23FAF7F2' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right center;
+      cursor: pointer;
+    }
+    .form-select option {
+      background: var(--text-dark);
+      color: var(--bg-color);
+    }
+
+    .toggle-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    @media (min-width: 600px) {
+      .toggle-group {
+        flex-direction: row;
+      }
+    }
+    .toggle-btn {
+      flex: 1;
+      padding: 1.2rem;
+      border: 1px solid rgba(250, 247, 242, 0.2);
+      background: transparent;
+      color: var(--bg-color);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      min-height: 44px;
+      letter-spacing: 0.05em;
+    }
+    .toggle-btn:hover {
+      border-color: rgba(250, 247, 242, 0.5);
+    }
+    .toggle-btn.active {
+      background: var(--accent-rose);
+      border-color: var(--accent-rose);
+      color: white;
+      font-weight: 400;
+    }
+
+    .submit-btn {
+      background: var(--accent-rose);
+      color: white;
+      border: none;
+      padding: 1.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      margin-top: 2rem;
+      cursor: pointer;
+      transition: background 0.4s ease, transform 0.4s ease;
+      min-height: 44px;
+      letter-spacing: 0.05em;
+    }
+    .submit-btn:hover {
+      background: #b88a8a;
+      transform: translateY(-3px);
+    }
+
+    #rsvp-success {
+      display: none;
+      padding: 5rem 2rem;
+      background: rgba(250, 247, 242, 0.03);
+      border: 1px solid rgba(201, 154, 154, 0.3);
+      border-radius: 2px;
+      animation: fadeIn 0.8s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer */
+    footer {
+      padding: 6rem 1.5rem 4rem;
+      text-align: center;
+      background: var(--bg-color);
+      position: relative;
+    }
+    .footer-hashtag {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--accent-rose);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .footer-thanks {
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      color: #666;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .social-icons svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--text-dark);
+      transition: fill 0.4s ease, transform 0.4s ease;
+      cursor: pointer;
+    }
+    .social-icons svg:hover {
+      fill: var(--accent-rose);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive text constraints */
+    @media (max-width: 767px) {
+      .hero-names { font-size: 36px; }
+      .monogram-amp { font-size: 7rem; }
+      .story-title { font-size: 36px; }
+      .event-title { font-size: 36px; }
+      .rsvp-title { font-size: 36px; }
+      :root {
+        --spacing-section: 5rem;
+      }
+      .gallery-item:nth-child(2) {
+        transform: translateY(0);
+      }
+    }
+
+    .text-center { text-align: center; }
+  </style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<!-- Hero -->
+<section class="hero fade-up">
+  <div class="hero-frame"></div>
+  <div class="monogram">
+    <span class="monogram-amp">&</span>
+  </div>
+  <h1 class="hero-names">[Name 1] & [Name 2]</h1>
+  <div class="hero-date">[Saturday, December 14, 2026]</div>
+</section>
+
+<!-- Divider -->
+<div class="divider fade-up">
+  <svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 10 Q 30 -5, 10 10 Q 30 25, 50 10 Q 70 -5, 90 10 Q 70 25, 50 10 Z" fill="none" stroke="currentColor" stroke-width="0.5"/>
+    <circle cx="50" cy="10" r="2" fill="currentColor"/>
+    <circle cx="20" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="80" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+  </svg>
+</div>
+
+<!-- Our Story -->
+<section class="story-container fade-up">
+  <div class="story-title text-center">
+    <h2>Our Story</h2>
+  </div>
+  <div class="story-text">
+    <p>Two paths converged in the quietest of moments, leading to a lifetime of shared laughter and endless adventures. We invite you to witness the next beautiful chapter of our journey together as we celebrate love, family, and forever.</p>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="divider fade-up">
+  <svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 10 Q 30 -5, 10 10 Q 30 25, 50 10 Q 70 -5, 90 10 Q 70 25, 50 10 Z" fill="none" stroke="currentColor" stroke-width="0.5"/>
+    <circle cx="50" cy="10" r="2" fill="currentColor"/>
+    <circle cx="20" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="80" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+  </svg>
+</div>
+
+<!-- Event Details -->
+<section class="fade-up">
+  <div class="events-grid">
+    <div class="event-card">
+      <h3 class="event-title">Ceremony</h3>
+      <div class="event-time">Three Thirty in the Afternoon</div>
+      <div class="event-location">
+        <strong>[Venue Name]</strong><br>
+        [123 Venue Street]<br>
+        [City, State, Zip]
+      </div>
+      <div class="event-dress">Semi-Formal Attire</div>
+    </div>
+    <div class="event-card">
+      <h3 class="event-title">Reception</h3>
+      <div class="event-time">Five O'clock in the Evening</div>
+      <div class="event-location">
+        <strong>[Venue Name]</strong><br>
+        [123 Venue Street]<br>
+        [City, State, Zip]
+      </div>
+      <div class="event-dress">Dinner & Dancing to follow</div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="divider fade-up">
+  <svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 10 Q 30 -5, 10 10 Q 30 25, 50 10 Q 70 -5, 90 10 Q 70 25, 50 10 Z" fill="none" stroke="currentColor" stroke-width="0.5"/>
+    <circle cx="50" cy="10" r="2" fill="currentColor"/>
+    <circle cx="20" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="80" cy="10" r="1" fill="currentColor" opacity="0.6"/>
+  </svg>
+</div>
+
+<!-- Gallery Placeholder -->
+<section class="fade-up">
+  <div class="text-center" style="margin-bottom: 4rem;">
+    <h2 class="serif" style="font-size: 3rem; color: var(--accent-rose); font-style: italic;">Moments</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"></div>
+    <div class="gallery-item"></div>
+    <div class="gallery-item"></div>
+  </div>
+</section>
+
+<!-- RSVP Form -->
+<section class="rsvp-section fade-up" style="margin-top: var(--spacing-section); max-width: 100%;">
+  <div class="rsvp-container">
+    <div id="rsvp-form-container">
+      <h2 class="rsvp-title">Kindly Reply</h2>
+      <div class="rsvp-deadline">By [RSVP Deadline Date]</div>
+      
+      <div class="custom-form">
+        <div class="form-group">
+          <label class="form-label">Name(s)</label>
+          <input type="text" class="form-input" placeholder="M................................................" id="rsvp-name">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Will you attend?</label>
+          <div class="toggle-group">
+            <button class="toggle-btn" id="btn-yes" onclick="setAttendance(true)">Joyfully Accept</button>
+            <button class="toggle-btn" id="btn-no" onclick="setAttendance(false)">Regretfully Decline</button>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Meal Preference</label>
+          <select class="form-select" id="rsvp-meal">
+            <option value="" disabled selected>Select an option...</option>
+            <option value="beef">Filet Mignon</option>
+            <option value="chicken">Roasted Herb Chicken</option>
+            <option value="vegetarian">Wild Mushroom Risotto (V)</option>
+            <option value="decline">Not attending</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">A Note for the Couple</label>
+          <textarea class="form-textarea" placeholder="Advice, well wishes, or a song request..." id="rsvp-message"></textarea>
+        </div>
+        
+        <button class="submit-btn" onclick="submitRSVP()">Send RSVP</button>
+      </div>
+    </div>
+    
+    <div id="rsvp-success">
+      <h2 class="rsvp-title" style="font-size: 3rem; margin-bottom: 1.5rem;">Thank You!</h2>
+      <p style="font-size: 1.2rem; font-weight: 300; line-height: 1.8;">Your response has been received.<br>We look forward to sharing this beautiful day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="fade-up">
+  <div class="footer-hashtag">#[Name1]And[Name2]</div>
+  <div class="footer-thanks">With all our love.</div>
+  <div class="social-icons">
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up animations
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    observer.observe(el);
+  });
+
+  // RSVP Logic
+  let attendanceStatus = null;
+
+  function setAttendance(status) {
+    attendanceStatus = status;
+    const btnYes = document.getElementById('btn-yes');
+    const btnNo = document.getElementById('btn-no');
+    
+    if (status) {
+      btnYes.classList.add('active');
+      btnNo.classList.remove('active');
+      
+      // Auto-focus meal preference
+      const mealSelect = document.getElementById('rsvp-meal');
+      if(mealSelect.value === 'decline' || !mealSelect.value) {
+          mealSelect.value = '';
+      }
+    } else {
+      btnNo.classList.add('active');
+      btnYes.classList.remove('active');
+      
+      // Auto-set meal to decline
+      document.getElementById('rsvp-meal').value = 'decline';
+    }
+  }
+
+  function submitRSVP() {
+    const name = document.getElementById('rsvp-name').value;
+    
+    if (!name.trim()) {
+      alert("Please enter your name(s).");
+      return;
+    }
+    
+    if (attendanceStatus === null) {
+      alert("Please let us know if you will attend.");
+      return;
+    }
+
+    // Hide form, show success
+    document.getElementById('rsvp-form-container').style.display = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
