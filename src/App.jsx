@@ -17,23 +17,26 @@ import InvitationGate from './components/InvitationGate';
 import GlobalEffects from './components/GlobalEffects';
 import { Heart } from 'lucide-react';
 
-const BrideSection = () => (
+const SaveTheDateSection = () => (
   <section className="py-32 px-6 bg-[#07070a] text-center">
     <div className="max-w-4xl mx-auto">
-      <h3 className="font-script text-4xl text-[#C4A47C] mb-6">Our Beautiful Bride</h3>
-      <div className="relative group max-w-sm mx-auto mb-12">
+      <h3 className="font-script text-4xl text-[#C4A47C] mb-6">Save the Date</h3>
+      <div className="relative group max-w-2xl mx-auto mb-12">
         <div className="absolute -inset-4 border border-[#C4A47C]/20 rounded-[40px] group-hover:border-[#C4A47C]/40 transition-colors duration-700" />
-        <div className="relative rounded-[30px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 aspect-[3/4]">
+        <div className="relative rounded-[30px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 aspect-video md:aspect-[16/9]">
           <img 
-            src="/images/bridephoto/photo_2026-05-03_17-25-47.jpg" 
-            alt="The Bride" 
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+            src="/images/image copy 7.png" 
+            alt="Megha & Sarin" 
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07070a]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07070a]/60 via-transparent to-transparent" />
+          <div className="absolute bottom-8 left-0 w-full text-center">
+            <p className="font-script text-4xl text-white drop-shadow-lg">Together Forever</p>
+          </div>
         </div>
       </div>
-      <h2 className="font-serif text-5xl text-[#FCFAF8] opacity-90 drop-shadow-lg">Megha Suvarnan</h2>
-      <p className="font-sans text-xs tracking-[0.3em] uppercase text-[#C4A47C] mt-4 font-medium opacity-70">A Vision of Elegance</p>
+      <h2 className="font-serif text-5xl text-[#FCFAF8] opacity-90 drop-shadow-lg">Megha & Sarin</h2>
+      <p className="font-sans text-xs tracking-[0.3em] uppercase text-[#C4A47C] mt-4 font-medium opacity-70">A Journey of Love Begins</p>
     </div>
   </section>
 );
@@ -59,7 +62,7 @@ function App() {
       
       <main className={`${isOpened ? 'opacity-100' : 'opacity-0 h-screen overflow-hidden'} transition-opacity duration-1000`}>
         <MainHero />
-        <BrideSection />
+        <SaveTheDateSection />
         <CountdownGrid />
         
         <div className="w-full flex justify-center py-8 opacity-20">
