@@ -3,10 +3,10 @@ import ReactPlayer from 'react-player';
 import { Music, VolumeX } from 'lucide-react';
 
 export default function MusicPlayer({ play }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   // Sync isPlaying with the 'play' prop from the Gate
-  useState(() => {
+  useEffect(() => {
     if (play) setIsPlaying(true);
   }, [play]);
 
@@ -16,20 +16,24 @@ export default function MusicPlayer({ play }) {
 
   return (
     <>
-      <div className="hidden">
+      <div className="fixed top-[-100px] left-[-100px] pointer-events-none opacity-0">
         <ReactPlayer
           url="https://www.youtube.com/watch?v=m65jhGwtWrg"
-          playing={isPlaying && play}
+          playing={play && isPlaying}
           loop={true}
-          volume={0.5}
-          width="0"
-          height="0"
-          onReady={() => {
-            if (play) setIsPlaying(true);
-          }}
+          volume={0.7}
+          muted={!play} // Start muted then unmute on interaction if needed
+          width="1px"
+          height="1px"
+          onStart={() => setIsPlaying(true)}
           config={{
             youtube: {
-              playerVars: { autoplay: 1, controls: 0 }
+              playerVars: { 
+                autoplay: 1, 
+                controls: 0, 
+                modestbranding: 1,
+                origin: window.location.origin
+              }
             }
           }}
         />
