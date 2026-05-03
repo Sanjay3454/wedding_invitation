@@ -18,12 +18,20 @@ export default function MusicPlayer({ play }) {
     <>
       <div className="hidden">
         <ReactPlayer
-          url="https://www.youtube.com/watch?v=DF3XjEhJ40Y"
+          url="https://www.youtube.com/watch?v=m65jhGwtWrg"
           playing={isPlaying && play}
           loop={true}
-          volume={0.6}
+          volume={0.5}
           width="0"
           height="0"
+          onReady={() => {
+            if (play) setIsPlaying(true);
+          }}
+          config={{
+            youtube: {
+              playerVars: { autoplay: 1, controls: 0 }
+            }
+          }}
         />
       </div>
       {play && (
