@@ -21,13 +21,13 @@ const SaveTheDateSection = () => (
   <section className="py-32 px-6 bg-[#07070a] text-center">
     <div className="max-w-4xl mx-auto">
       <h3 className="font-script text-4xl text-[#C4A47C] mb-6">Save the Date</h3>
-      <div className="relative group max-w-2xl mx-auto mb-12">
+      <div className="relative group max-w-sm mx-auto mb-12">
         <div className="absolute -inset-4 border border-[#C4A47C]/20 rounded-[40px] group-hover:border-[#C4A47C]/40 transition-colors duration-700" />
-        <div className="relative rounded-[30px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 aspect-video md:aspect-[16/9]">
+        <div className="relative rounded-[30px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 aspect-[3/4]">
           <img 
-            src="/images/image copy 7.png" 
+            src="/images/bridephoto/photo_2026-05-03_17-25-47.jpg" 
             alt="Megha & Sarin" 
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#07070a]/60 via-transparent to-transparent" />
           <div className="absolute bottom-8 left-0 w-full text-center">
