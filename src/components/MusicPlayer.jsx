@@ -6,6 +6,9 @@ export default function MusicPlayer({ autoPlay }) {
   const audioRef = useRef(null);
 
   useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5;
+    }
     if (autoPlay && audioRef.current) {
       // Small delay to ensure browser acknowledges the interaction from the "Open" button
       const playPromise = audioRef.current.play();
@@ -35,7 +38,7 @@ export default function MusicPlayer({ autoPlay }) {
     <>
       <audio
         ref={audioRef}
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        src="https://www.chosic.com/wp-content/uploads/2021/04/Indian-Summer-Indian-Instrumental-Background-Music.mp3"
         loop
         preload="auto"
       />

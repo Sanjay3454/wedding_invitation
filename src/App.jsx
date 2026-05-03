@@ -24,9 +24,9 @@ const SaveTheDateSection = () => (
       <div className="relative group max-w-sm mx-auto mb-12">
         <div className="absolute -inset-4 border border-[#C4A47C]/20 rounded-[40px] group-hover:border-[#C4A47C]/40 transition-colors duration-700" />
         <div className="relative rounded-[30px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 aspect-[3/4]">
-          <img 
-            src="/images/bridephoto/photo_2026-05-03_17-25-47.jpg" 
-            alt="Megha & Sarin" 
+          <img
+            src="/images/photo_2026-05-03_17-25-47.jpg"
+            alt="Megha & Sarin"
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#07070a]/60 via-transparent to-transparent" />
@@ -48,27 +48,27 @@ function App() {
   return (
     <div className="relative w-full min-h-screen bg-[#07070a] overflow-x-hidden selection:bg-[#C4A47C] selection:text-white">
       {showGate && (
-        <InvitationGate 
+        <InvitationGate
           onOpen={() => {
             setIsOpened(true);
             setTimeout(() => setShowGate(false), 500); // Unmount after animation finishes
-          }} 
+          }}
         />
       )}
 
       {isOpened && <CustomCursor />}
       {isOpened && <FloatingNav />}
       {isOpened && <MusicPlayer autoPlay={isOpened} />}
-      
+
       <main className={`${isOpened ? 'opacity-100' : 'opacity-0 h-screen overflow-hidden'} transition-opacity duration-1000`}>
         <MainHero />
         <SaveTheDateSection />
         <CountdownGrid />
-        
+
         <div className="w-full flex justify-center py-8 opacity-20">
           <svg width="100" height="20" viewBox="0 0 100 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 10 Q 30 -5, 10 10 Q 30 25, 50 10 Q 70 -5, 90 10 Q 70 25, 50 10 Z" stroke="#C4A47C" strokeWidth="1"/>
-            <circle cx="50" cy="10" r="2" fill="#C4A47C"/>
+            <path d="M50 10 Q 30 -5, 10 10 Q 30 25, 50 10 Q 70 -5, 90 10 Q 70 25, 50 10 Z" stroke="#C4A47C" strokeWidth="1" />
+            <circle cx="50" cy="10" r="2" fill="#C4A47C" />
           </svg>
         </div>
 
