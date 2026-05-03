@@ -58,7 +58,7 @@ function App() {
 
       {isOpened && <CustomCursor />}
       {isOpened && <FloatingNav />}
-      {isOpened && <MusicPlayer autoPlay={isOpened} />}
+      <MusicPlayer play={isOpened} />
 
       <main className={`${isOpened ? 'opacity-100' : 'opacity-0 h-screen overflow-hidden'} transition-opacity duration-1000`}>
         <MainHero />
