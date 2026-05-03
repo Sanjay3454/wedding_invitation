@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MainHero from './components/MainHero';
 import CountdownGrid from './components/CountdownGrid';
 import WeddingCeremony from './components/WeddingCeremony';
@@ -44,21 +44,34 @@ const SaveTheDateSection = () => (
 function App() {
   const [isOpened, setIsOpened] = useState(false);
   const [showGate, setShowGate] = useState(true);
+  const audioRef = useRef(null);
+
+  const handleOpen = () => {
+    setIsOpened(true);
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5;
+      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+    }
+    setTimeout(() => setShowGate(false), 500);
+  };
 
   return (
     <div className="relative w-full min-h-screen bg-[#07070a] overflow-x-hidden selection:bg-[#C4A47C] selection:text-white">
+      <audio
+        ref={audioRef}
+        src="https://cdn.pixabay.com/audio/2022/03/10/audio_507662c19e.mp3"
+        loop
+        preload="auto"
+      />
       {showGate && (
         <InvitationGate
-          onOpen={() => {
-            setIsOpened(true);
-            setTimeout(() => setShowGate(false), 500); // Unmount after animation finishes
-          }}
+          onOpen={handleOpen}
         />
       )}
 
       {isOpened && <CustomCursor />}
       {isOpened && <FloatingNav />}
-      <MusicPlayer play={isOpened} />
+      <MusicPlayer play={isOpened} audioRef={audioRef} />
 
       <main className={`${isOpened ? 'opacity-100' : 'opacity-0 h-screen overflow-hidden'} transition-opacity duration-1000`}>
         <MainHero />
