@@ -6,10 +6,12 @@ export default function MusicPlayer({ autoPlay }) {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Placeholder audio for the wedding
-    audioRef.current = new Audio('https://cdn.pixabay.com/download/audio/2022/05/16/audio_f5eb803566.mp3?filename=romantic-piano-110051.mp3');
+    // High-end cinematic wedding track
+    audioRef.current = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'); // Fallback high quality
+    // Better romantic track for weddings
+    audioRef.current.src = 'https://cdn.pixabay.com/audio/2022/08/04/audio_2dba13a86d.mp3'; 
     audioRef.current.loop = true;
-    audioRef.current.volume = 0.3;
+    audioRef.current.volume = 0.4;
 
     if (autoPlay) {
       audioRef.current.play().then(() => {
@@ -24,7 +26,7 @@ export default function MusicPlayer({ autoPlay }) {
         audioRef.current.pause();
       }
     };
-  }, []);
+  }, [autoPlay]);
 
   const togglePlay = () => {
     if (isPlaying) {
@@ -38,18 +40,18 @@ export default function MusicPlayer({ autoPlay }) {
   return (
     <button
       onClick={togglePlay}
-      className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-50 p-4 rounded-full glass shadow-xl hover:scale-110 transition-transform duration-300"
+      className="fixed bottom-24 right-6 md:bottom-12 md:right-12 z-[200] p-5 rounded-full bg-white/5 backdrop-blur-xl border border-[#C4A47C]/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:scale-110 transition-all duration-500 group"
       aria-label="Toggle Music"
     >
       {isPlaying ? (
-        <Music className="w-6 h-6 text-[#2A2522]" />
+        <Music className="w-6 h-6 text-[#C4A47C] group-hover:text-white transition-colors" />
       ) : (
-        <VolumeX className="w-6 h-6 text-[#2A2522]" />
+        <VolumeX className="w-6 h-6 text-[#C4A47C] group-hover:text-white transition-colors" />
       )}
       
       {/* Ripple effect when playing */}
       {isPlaying && (
-        <span className="absolute inset-0 rounded-full animate-ping bg-[#C4A47C] opacity-20"></span>
+        <span className="absolute inset-0 rounded-full animate-ping bg-[#C4A47C] opacity-20 pointer-events-none"></span>
       )}
     </button>
   );
