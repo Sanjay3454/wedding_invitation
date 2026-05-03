@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import MainHero from './components/MainHero';
-import OurStory from './components/OurStory';
 import CountdownGrid from './components/CountdownGrid';
 import WeddingCeremony from './components/WeddingCeremony';
-import DressCode from './components/DressCode';
 import CoupleProfiles from './components/CoupleProfiles';
 import NoteToGuests from './components/NoteToGuests';
 import Gallery from './components/Gallery';
@@ -18,6 +16,27 @@ import CustomCursor from './components/CustomCursor';
 import InvitationGate from './components/InvitationGate';
 import GlobalEffects from './components/GlobalEffects';
 import { Heart } from 'lucide-react';
+
+const BrideSection = () => (
+  <section className="py-32 px-6 bg-[#07070a] text-center">
+    <div className="max-w-4xl mx-auto">
+      <h3 className="font-script text-4xl text-[#C4A47C] mb-6">Our Beautiful Bride</h3>
+      <div className="relative group max-w-sm mx-auto mb-12">
+        <div className="absolute -inset-4 border border-[#C4A47C]/20 rounded-[40px] group-hover:border-[#C4A47C]/40 transition-colors duration-700" />
+        <div className="relative rounded-[30px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 aspect-[3/4]">
+          <img 
+            src="/images/bridephoto/photo_2026-05-03_17-25-47.jpg" 
+            alt="The Bride" 
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07070a]/40 to-transparent" />
+        </div>
+      </div>
+      <h2 className="font-serif text-5xl text-[#FCFAF8] opacity-90 drop-shadow-lg">Megha Suvarnan</h2>
+      <p className="font-sans text-xs tracking-[0.3em] uppercase text-[#C4A47C] mt-4 font-medium opacity-70">A Vision of Elegance</p>
+    </div>
+  </section>
+);
 
 function App() {
   const [isOpened, setIsOpened] = useState(false);
@@ -34,15 +53,13 @@ function App() {
         />
       )}
 
-      {/* Only render interactive global elements if opened to prevent tabbing */}
       {isOpened && <CustomCursor />}
       {isOpened && <FloatingNav />}
-      
       {isOpened && <MusicPlayer autoPlay={isOpened} />}
       
       <main className={`${isOpened ? 'opacity-100' : 'opacity-0 h-screen overflow-hidden'} transition-opacity duration-1000`}>
         <MainHero />
-        <OurStory />
+        <BrideSection />
         <CountdownGrid />
         
         <div className="w-full flex justify-center py-8 opacity-20">
@@ -53,7 +70,6 @@ function App() {
         </div>
 
         <WeddingCeremony />
-        <DressCode />
         <CoupleProfiles />
         <NoteToGuests />
         <Gallery />
@@ -63,14 +79,12 @@ function App() {
         <ShareInvitation />
       </main>
 
-      {/* Final Footer */}
       <footer className="py-24 px-6 text-center text-[#EBEBEB] bg-[#050508]">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           <h2 className="font-script text-6xl md:text-7xl mb-4 text-[#C4A47C]">Megha & Sarin</h2>
           <p className="font-serif tracking-widest text-sm uppercase text-gray-500 mb-12">
             May 18, 2026
           </p>
-          
           <p className="font-sans text-[10px] text-gray-600 flex items-center gap-2">
             Made with <Heart className="w-3 h-3 text-[#C4A47C] fill-current" /> for Megha & Sarin
           </p>

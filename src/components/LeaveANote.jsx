@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import { Send } from 'lucide-react';
+import gsap from 'gsap';
 
 export default function LeaveANote() {
+  const [isSent, setIsSent] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSent(true);
+    setTimeout(() => setIsSent(false), 5000); // Reset after 5 seconds
+  };
+
   return (
     <section className="py-32 px-6 text-center max-w-3xl mx-auto bg-[#07070a]" id="message">
       <h3 className="font-script text-4xl text-[#C4A47C] mb-6 drop-shadow-md">Leave a Note</h3>
@@ -18,41 +28,53 @@ export default function LeaveANote() {
           </svg>
         </div>
 
-        <form className="flex flex-col gap-10" onSubmit={(e) => e.preventDefault()}>
-          <input 
-            type="text" 
-            placeholder="Dear Megha & Sarin," 
-            className="w-full bg-transparent border-none outline-none font-script text-3xl text-[#E2C99F] placeholder:text-[#C4A47C]/30 focus:ring-0 pl-0 mt-2"
-          />
-          <textarea 
-            rows="3" 
-            placeholder="Wishing you a lifetime of love and happiness..." 
-            className="w-full bg-transparent border-none outline-none font-script text-3xl text-[#EBEBEB]/80 placeholder:text-[#C4A47C]/30 focus:ring-0 pl-0 resize-none leading-[3.5rem]"
-          ></textarea>
-          <input 
-            type="text" 
-            placeholder="With love," 
-            className="w-full bg-transparent border-none outline-none font-script text-3xl text-[#E2C99F] placeholder:text-[#C4A47C]/30 focus:ring-0 pl-0 mb-8"
-          />
-          
-          <button 
-            className="w-full bg-[#C4A47C] text-[#07070a] py-5 flex items-center justify-center gap-3 hover:bg-[#E2C99F] transition-all duration-500 tracking-[0.3em] font-bold text-xs rounded-full shadow-[0_15px_30px_rgba(196,164,124,0.2)] group-hover:scale-[1.02]"
-            onMouseMove={(e) => {
-              const btn = e.currentTarget;
-              const rect = btn.getBoundingClientRect();
-              const x = e.clientX - rect.left - rect.width / 2;
-              const y = e.clientY - rect.top - rect.height / 2;
-              gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: "power2.out" });
-            }}
-            onMouseLeave={(e) => {
-              gsap.to(e.currentTarget, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
-            }}
-          >
-            SEND MESSAGE
-            <Send className="w-4 h-4" />
-          </button>
-        </form>
+        {isSent ? (
+          <div className="text-center py-20 animate-fade-in">
+             <h4 className="font-script text-5xl text-[#C4A47C] mb-6">Message Sent!</h4>
+             <p className="font-serif text-[#EBEBEB] text-xl opacity-80">Thank you for your warm wishes.</p>
+          </div>
+        ) : (
+          <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
+            <input 
+              type="text" 
+              required
+              placeholder="Dear Megha & Sarin," 
+              className="w-full bg-transparent border-none outline-none font-script text-3xl text-[#E2C99F] placeholder:text-[#C4A47C]/30 focus:ring-0 pl-0 mt-2"
+            />
+            <textarea 
+              rows="3" 
+              required
+              placeholder="Wishing you a lifetime of love and happiness..." 
+              className="w-full bg-transparent border-none outline-none font-script text-3xl text-[#EBEBEB]/80 placeholder:text-[#C4A47C]/30 focus:ring-0 pl-0 resize-none leading-[3.5rem]"
+            ></textarea>
+            <input 
+              type="text" 
+              required
+              placeholder="With love," 
+              className="w-full bg-transparent border-none outline-none font-script text-3xl text-[#E2C99F] placeholder:text-[#C4A47C]/30 focus:ring-0 pl-0 mb-8"
+            />
+            
+            <button 
+              className="w-full bg-[#C4A47C] text-[#07070a] py-5 flex items-center justify-center gap-3 hover:bg-[#E2C99F] transition-all duration-500 tracking-[0.3em] font-bold text-xs rounded-full shadow-[0_15px_30px_rgba(196,164,124,0.2)] group-hover:scale-[1.02]"
+              onMouseMove={(e) => {
+                const btn = e.currentTarget;
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: "power2.out" });
+              }}
+              onMouseLeave={(e) => {
+                gsap.to(e.currentTarget, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+              }}
+            >
+              SEND MESSAGE
+              <Send className="w-4 h-4" />
+            </button>
+          </form>
+        )}
       </div>
     </section>
+  );
+}
   );
 }
