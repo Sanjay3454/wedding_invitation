@@ -45,7 +45,7 @@ export default function MusicPlayer({ play }) {
     <>
       <audio
         ref={audioRef}
-        src="https://www.chosic.com/wp-content/uploads/2021/04/Indian-Summer-Indian-Instrumental-Background-Music.mp3"
+        src="https://cdn.pixabay.com/audio/2022/03/10/audio_507662c19e.mp3"
         loop
         preload="auto"
       />
