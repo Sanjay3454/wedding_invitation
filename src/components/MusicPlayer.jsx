@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player';
 import { Music, VolumeX } from 'lucide-react';
 
 export default function MusicPlayer({ play }) {
