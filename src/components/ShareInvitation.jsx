@@ -11,6 +11,7 @@ export default function ShareInvitation() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+  //
 
   const handleWhatsApp = () => {
     const url = `https://wa.me/?text=${encodeURIComponent(shareText + websiteUrl)}`;
@@ -30,7 +31,7 @@ export default function ShareInvitation() {
     <section className="py-40 px-6 text-center max-w-4xl mx-auto border-t border-[#C4A47C]/10 bg-[#07070a]">
       <h3 className="font-script text-4xl text-[#C4A47C] mb-6 drop-shadow-md">Spread the Joy</h3>
       <h2 className="font-serif text-4xl md:text-5xl text-[#EBEBEB] mb-16 opacity-90">Share This Invitation</h2>
-      
+
       <div className="flex flex-wrap justify-center gap-6 mb-24">
         <button onClick={handleWhatsApp} className="flex items-center gap-3 bg-white/5 border border-[#C4A47C]/20 rounded-full px-8 py-4 text-xs tracking-widest uppercase text-[#EBEBEB] hover:bg-[#C4A47C] hover:text-[#07070a] transition-all duration-500 shadow-lg hover:scale-105">
           <MessageCircle className="w-5 h-5" />
